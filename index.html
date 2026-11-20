@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#ffffff">
+
+<title>سَكِينَة | طمأنينة ترافق يومك</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+
+ margin:0;
+
+ font-family:Tahoma,Arial,sans-serif;
+
+ background:#fff;
+
+ color:#244b3c;
+
+}
+
+header{
+
+ padding:28px 20px;
+
+ background:#244b3c;
+
+ color:#f1dfb5;
+
+ border-radius:0 0 28px 28px;
+
+}
+
+header h1{font-size:30px;margin:0 0 8px}
+
+header p{margin:0;font-size:14px}
+
+main{padding:20px;max-width:600px;margin:auto}
+
+h2{font-size:20px}
+
+.wird{
+
+ background:#f5f1e7;
+
+ padding:20px;
+
+ border-radius:20px;
+
+ margin:20px 0;
+
+}
+
+.progress{
+
+ height:9px;background:#ded8c8;
+
+ border-radius:20px;margin:15px 0;
+
+ overflow:hidden;
+
+}
+
+#bar{height:100%;width:0;background:#b89550}
+
+button{
+
+ border:0;border-radius:14px;
+
+ padding:13px 18px;
+
+ background:#244b3c;color:#f6e5bc;
+
+ font-size:15px;cursor:pointer;
+
+}
+
+.cards{
+
+ display:grid;
+
+ grid-template-columns:1fr 1fr;
+
+ gap:12px;
+
+}
+
+.card{
+
+ background:#f7f5ef;
+
+ padding:20px 10px;
+
+ border-radius:18px;
+
+ text-align:center;
+
+ color:#244b3c;
+
+ font-weight:bold;
+
+ cursor:pointer;
+
+ border:1px solid #eee7d8;
+
+}
+
+.card span{display:block;font-size:25px;margin-bottom:9px}
+
+#content{
+
+ margin-top:20px;
+
+ padding:20px;
+
+ background:#f7f5ef;
+
+ border-radius:18px;
+
+ line-height:2;
+
+}
+
+footer{
+
+ text-align:center;
+
+ color:#a58b55;
+
+ padding:30px 10px;
+
+ font-size:13px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>سَكِينَة 🌿</h1>
+
+<p>طمأنينة ترافق يومك</p>
+
+</header>
+
+<main>
+
+<h2>السلام عليكم 🤍</h2>
+
+<p>ابدئي يومك بذكر الله</p>
+
+<section class="wird">
+
+<h3>وردي اليومي</h3>
+
+<p>إنجازك اليوم: <b id="count">0</b> من 20 دقيقة</p>
+
+<div class="progress"><div id="bar"></div></div>
+
+<button onclick="addProgress()">أضفت دقيقة +</button>
+
+</section>
+
+<h2>اكتشفي سكينة</h2>
+
+<div class="cards">
+
+<div class="card" onclick="show('quran')"><span>📖</span>القرآن الكريم</div>
+
+<div class="card" onclick="show('azkar')"><span>🌿</span>الأذكار</div>
+
+<div class="card" onclick="show('dua')"><span>🤲</span>الأدعية</div>
+
+<div class="card" onclick="show('prayer')"><span>🕌</span>مواقيت الصلاة</div>
+
+<div class="card" onclick="show('learn')"><span>✨</span>تعلمي دينك</div>
+
+<div class="card" onclick="show('about')"><span>💚</span>عن سكينة</div>
+
+</div>
+
+<div id="content">
+
+<h3>أهلاً بيكي في سكينة</h3>
+
+<p>مساحة هادئة تقرّبك من الله، خطوة صغيرة كل يوم.</p>
+
+</div>
+
+</main>
+
+<footer>
+
+سَكِينَة | اللهم اجعل هذا العمل نافعًا
+
+</footer>
+
+<script>
+
+let count=Number(localStorage.getItem('sakeenahCount'))||0;
+
+function update(){
+
+ document.getElementById('count').textContent=count;
+
+ document.getElementById('bar').style.width=(count/20*100)+'%';
+
+}
+
+function addProgress(){
+
+ if(count<20)count++;
+
+ localStorage.setItem('sakeenahCount',count);
+
+ update();
+
+}
+
+function show(page){
+
+ const content=document.getElementById('content');
+
+ const pages={
+
+ quran:['القرآن الكريم','قريبًا بإذن الله: قراءة القرآن وحفظ موضع التوقف.'],
+
+ azkar:['الأذكار','قريبًا: أذكار الصباح والمساء والنوم والاستيقاظ بمصادر موثوقة.'],
+
+ dua:['الأدعية','قريبًا: أدعية مصنفة مع توثيق مصادرها.'],
+
+ prayer:['مواقيت الصلاة','قريبًا: مواقيت الصلاة حسب موقعك وطريقة الحساب المختارة.'],
+
+ learn:['تعلمي دينك','قريبًا: دروس مبسطة في السيرة والفقه والتجويد.'],
+
+ about:['عن سكينة','هذا العمل صدقة عن روح جدي. اللهم اغفر له وارحمه واجعل هذا العمل في ميزان حسناته.']
+
+ };
+
+ content.innerHTML='<h3>'+pages[page][0]+'</h3><p>'+pages[page][1]+'</p>';
+
+}
+
+update();
+
+</script>
+
+</body>
+
+</html>
